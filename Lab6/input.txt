@@ -1,0 +1,25 @@
+This is a test.
+Only a test.
+A test of your code.
+  Some lines have white space
+some are lowercase
+1234 some have numbers
+This line occurs multiple times. Make sure it shows up multiple times in the output, too.
+
+some lines even were blank
+# Make sure you leave out lines that start with #
+#################
+
+some lines are the same length A
+some lines are the same length C
+some lines are the same length B
+# some lines are the same length
+
+This line occurs multiple times. Make sure it shows up multiple times in the output, too.
+It doesn't matter what characters are on the line or how long it is.
+I'm sure your code can sort them all.
+!@#$%^&* (even if there are special characters)
+really, don't go overthinking this one.
+This line occurs multiple times. Make sure it shows up multiple times in the output, too.
+#$%^&*
+some lines are the same length #

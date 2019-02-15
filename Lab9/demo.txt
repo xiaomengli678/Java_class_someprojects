@@ -1,0 +1,217 @@
+Summary of symbols in my string representations
+c : covered cell
+F : flagged cell
+M : uncovered mine
+. : uncovered cell with no neighboring mines
+<number n> : uncovered cell with n neighboring mines
+Test first manager
+initializing hexagon with radius 5 and 10 mines
+          c c c c c c 
+         c c c c c c c 
+        c c c c c c c c 
+       c c c c c c c c c 
+      c c c c c c c c c c 
+     c c c c c c c c c c c 
+      c c c c c c c c c c   
+       c c c c c c c c c     
+        c c c c c c c c       
+         c c c c c c c         
+          c c c c c c           
+
+uncover (0, 1)
+          c c c c c c 
+         c c c c c c c 
+        c c c c c c c c 
+       c c c c c 1 1 c 1 
+      c c c c c 2 . 1 1 . 
+     c c c c 1 1 . . . . . 
+      c c c 1 . . . . . .   
+       c c 1 . . . . . .     
+        c c 1 . 1 1 . .       
+         c c 1 2 c 2 .         
+          c c c c c 1           
+
+toggle flag at (-2, 4)
+          c c c c c c 
+         c c c c c c c 
+        c c c c c c c c 
+       c c c c c 1 1 F 1 
+      c c c c c 2 . 1 1 . 
+     c c c c 1 1 . . . . . 
+      c c c 1 . . . . . .   
+       c c 1 . . . . . .     
+        c c 1 . 1 1 . .       
+         c c 1 2 c 2 .         
+          c c c c c 1           
+
+uncover (-3, 4)
+          c c c c c c 
+         c c c c c c c 
+        c c c c c c 1 c 
+       c c c c c 1 1 F 1 
+      c c c c c 2 . 1 1 . 
+     c c c c 1 1 . . . . . 
+      c c c 1 . . . . . .   
+       c c 1 . . . . . .     
+        c c 1 . 1 1 . .       
+         c c 1 2 c 2 .         
+          c c c c c 1           
+
+Test second manager
+initializing hexagon with radius 7 and 30 mines
+              c c c c c c c c 
+             c c c c c c c c c 
+            c c c c c c c c c c 
+           c c c c c c c c c c c 
+          c c c c c c c c c c c c 
+         c c c c c c c c c c c c c 
+        c c c c c c c c c c c c c c 
+       c c c c c c c c c c c c c c c 
+        c c c c c c c c c c c c c c   
+         c c c c c c c c c c c c c     
+          c c c c c c c c c c c c       
+           c c c c c c c c c c c         
+            c c c c c c c c c c           
+             c c c c c c c c c             
+              c c c c c c c c               
+
+toggle flag at (3, 0)
+              c c c c c c c c 
+             c c c c c c c c c 
+            c c c c c c c c c c 
+           c c c c c c c c c c c 
+          c c c c c c c c c c c c 
+         c c c c c c c c c c c c c 
+        c c c c c c c c c c c c c c 
+       c c c c c c c c c c c c c c c 
+        c c c c c c c c c c c c c c   
+         c c c c c c c c c c c c c     
+          c c c c c c c F c c c c       
+           c c c c c c c c c c c         
+            c c c c c c c c c c           
+             c c c c c c c c c             
+              c c c c c c c c               
+
+uncover (4, 1)
+              c c c c c c c c 
+             c c c c c c c c c 
+            c c c c c c c c c c 
+           c c c c c c c c c c c 
+          c c c c c c c c c c c c 
+         c c c c c c c c c c c c c 
+        c c c c c c c c c c c c c c 
+       c c c c c c c c c c c c c c c 
+        c c c c c c c c c c c c c c   
+         c c c c c c c c c c c c c     
+          c c c c c c c F c c c c       
+           c c c c c c c c 1 c c         
+            c c c c c c c c c c           
+             c c c c c c c c c             
+              c c c c c c c c               
+
+toggle flag at (3, 0)
+              c c c c c c c c 
+             c c c c c c c c c 
+            c c c c c c c c c c 
+           c c c c c c c c c c c 
+          c c c c c c c c c c c c 
+         c c c c c c c c c c c c c 
+        c c c c c c c c c c c c c c 
+       c c c c c c c c c c c c c c c 
+        c c c c c c c c c c c c c c   
+         c c c c c c c c c c c c c     
+          c c c c c c c c c c c c       
+           c c c c c c c c 1 c c         
+            c c c c c c c c c c           
+             c c c c c c c c c             
+              c c c c c c c c               
+
+uncover (0, 2)
+              c c c c c c c c 
+             c c c c c c c c c 
+            c c c c c c c c c c 
+           c c c c c c 2 2 c c c 
+          c c c c c c 2 . 1 1 1 c 
+         c c c c c c 1 . . . . 1 c 
+        c c c c c c 1 . . . . 1 c c 
+       c c c c c c c 1 1 . . 1 c c c 
+        c c c c c c c c 2 . 1 c c c   
+         c c c c c c c c 1 . 1 c c     
+          c c c c c c c 1 . 1 c c       
+           c c c c c c c 1 1 c c         
+            c c c c c c c c c c           
+             c c c c c c c c c             
+              c c c c c c c c               
+
+uncover (1, 0)
+              . 1 1 1 2 c 1 . 
+             1 2 c 2 c 3 2 . . 
+            1 c 2 1 2 3 c 2 1 1 
+           . 2 2 . 2 c 2 2 c 2 c 
+          . 1 c 1 1 c 2 . 1 1 1 1 
+         1 1 2 2 1 2 1 . . . . 1 1 
+        2 c 2 c 3 c 1 . . . . 1 c 1 
+       c 3 1 1 2 c 2 1 1 . . 1 2 1 . 
+        c 1 . . 1 1 2 M 2 . 1 c 1 .   
+         1 1 1 . . 1 c c 1 . 1 2 1     
+          1 c 2 1 . 1 2 1 . 1 2 c       
+           1 2 c 1 1 2 2 1 1 c 2         
+            . 2 2 1 c c c 1 1 1           
+             1 c 1 1 2 2 2 1 .             
+              1 1 . . . 1 c 1               
+
+Oops! Uncovered a mine!
+
+Go back and test first manager some more
+          c c c c c c 
+         c c c c c c c 
+        c c c c c c 1 c 
+       c c c c c 1 1 F 1 
+      c c c c c 2 . 1 1 . 
+     c c c c 1 1 . . . . . 
+      c c c 1 . . . . . .   
+       c c 1 . . . . . .     
+        c c 1 . 1 1 . .       
+         c c 1 2 c 2 .         
+          c c c c c 1           
+
+uncover (-3, 3)
+          . . . . . . 
+         . . . . . . . 
+        . . . 1 1 . 1 1 
+       . . . 2 c 1 1 F 1 
+      . 1 1 1 c 2 . 1 1 . 
+     . 1 c c 1 1 . . . . . 
+      1 c c 1 . . . . . .   
+       c c 1 . . . . . .     
+        c c 1 . 1 1 . .       
+         c c 1 2 c 2 .         
+          c c c c c 1           
+
+toggle flag at (-2, 1)
+          . . . . . . 
+         . . . . . . . 
+        . . . 1 1 . 1 1 
+       . . . 2 F 1 1 F 1 
+      . 1 1 1 c 2 . 1 1 . 
+     . 1 c c 1 1 . . . . . 
+      1 c c 1 . . . . . .   
+       c c 1 . . . . . .     
+        c c 1 . 1 1 . .       
+         c c 1 2 c 2 .         
+          c c c c c 1           
+
+uncover (5, -1)
+          . . . . . . 
+         . . . . . . . 
+        . . . 1 1 . 1 1 
+       . . . 2 F 1 1 F 1 
+      . 1 1 1 c 2 . 1 1 . 
+     . 1 c 2 1 1 . . . . . 
+      1 3 c 1 . . . . . .   
+       c 2 1 . . . . . .     
+        1 1 1 . 1 1 . .       
+         1 c 1 2 c 2 .         
+          1 1 1 c M 1           
+
+Uncovered a mine again, guess that's enough

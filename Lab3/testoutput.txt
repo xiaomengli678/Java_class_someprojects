@@ -1,0 +1,26 @@
+Let's play with desserts!
+1.33 pounds of Gummy Worms at $0.89/lb
+4 Oatmeal Raisin Cookies at $3.99/dozen
+Vanilla Ice Cream topped with Chocolate Sprinkles
+Strawberry Ice Cream topped with Oreos
+Vanilla Ice Cream topped with Strawberry Ice Cream topped with Oreos
+Vanilla Ice Cream topped with Chocolate Sprinkles topped with Gummy Worms
+Carrot Cake
+Vanilla Ice Cream topped with Carrot Cake
+Vanilla Ice Cream topped with Carrot Cake topped with Vanilla Ice Cream topped with Carrot Cake
+
+Put some desserts into an array and loop over them
+Gummy Worms will cost $1.18
+Oatmeal Raisin Cookies will cost $1.33
+Vanilla Ice Cream will cost $1.05
+Chocolate Sprinkles will cost $0.25
+Vanilla Ice Cream topped with Chocolate Sprinkles will cost $1.30
+Strawberry Ice Cream topped with Oreos will cost $2.70
+Vanilla Ice Cream topped with Strawberry Ice Cream topped with Oreos will cost $3.75
+Vanilla Ice Cream topped with Chocolate Sprinkles topped with Gummy Worms will cost $2.48
+Peanut Butter Fudge will cost $8.98
+Chocolate Chip Cookies will cost $1.25
+Candy Corn will cost $3.27
+Carrot Cake will cost $1.23
+Vanilla Ice Cream topped with Carrot Cake will cost $2.28
+Vanilla Ice Cream topped with Carrot Cake topped with Vanilla Ice Cream topped with Carrot Cake will cost $4.56 ###

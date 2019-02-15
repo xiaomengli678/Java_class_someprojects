@@ -1,0 +1,228 @@
+import java.util.Collection;
+import java.io.*;
+import java.util.*;
+
+public class EvilHangman extends FairHangman implements HangmanInterface {
+
+    public static ArrayList<String> dictionaryList = new ArrayList<>();
+    public static ArrayList<String> tempList = new ArrayList<>();
+    public static ArrayList<String> tempListcopy = new ArrayList<>();
+    public static String actualWord = "ZZZZZ";
+    public static int remainGuess = 0;
+    public static int allowedGuess;
+    public static int usedGuess = 0;
+    public static ArrayList<Character> actualList = new ArrayList<>();
+    public static ArrayList<Character> guessList = new ArrayList<>();
+    public static HashSet<Character> actualSet = new HashSet();
+    public static HashSet<Character> allCharGuessed = new HashSet<>();
+    public static int wordSize;
+    public static boolean changeChar;
+    public static boolean truefound = false;
+    public static Set<String> tempListcopyset;
+    /** Character used for unknown letters in word being guessed. */
+    public char BLANK = '-';
+
+
+    public void initGame(int guesses){
+        allowedGuess = guesses;
+        remainGuess = guesses;
+        usedGuess = 0;
+        allCharGuessed = new HashSet<>();
+        guessList = new ArrayList<>();
+        for(int i = 0; i<wordSize; ++i){
+            guessList.add(BLANK);
+
+        }
+    }
+
+    public int getGuessesRemaining(){
+        remainGuess = allowedGuess - usedGuess;
+        if (remainGuess < 1){
+            return 0;
+        }
+        return remainGuess;
+    }
+
+
+    public Collection getGuessedLetters(){
+
+        return allCharGuessed;
+    }
+
+
+    public String getPuzzle(){
+        return super.getPuzzle();
+        /**
+        StringBuilder puzzle = new StringBuilder();
+        for (char s : guessList) {
+            puzzle.append(s);
+        }
+        return puzzle.toString();
+        **/
+    }
+
+
+    public String getSecretWord(){
+        return actualWord;
+    }
+    public boolean isComplete(){
+        for (int i = 0; i < guessList.size(); i++) {
+            if (guessList.get(i) == BLANK) {
+                return false;
+            }
+        }
+        return true;
+    }
+    public boolean isGameOver(){
+        StringBuilder newpuzzle = new StringBuilder();
+        for (char s : guessList) {
+            newpuzzle.append(s);
+        }
+        if((remainGuess < 1 || newpuzzle.toString().equals(actualWord))){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+
+    public boolean updateWithGuess(char letter) {
+
+        allCharGuessed.add(letter);
+        usedGuess = usedGuess + 1;
+
+
+
+        if (!truefound) {
+            tempList = divideConquer(tempList, letter);
+            if (tempListcopy.size() > 0) {
+                tempListcopyset = new HashSet<>(tempListcopy);
+            } else {
+                tempListcopyset = new HashSet<>();
+            }
+
+            Boolean trueOut = false;
+            if (tempList.size() < 5){
+                trueOut = true;
+            }
+            if (usedGuess  == allowedGuess){
+                actualWord = tempList.get(0);
+                System.out.println("Has to give a real word chosen by system: " + actualWord);
+                for (Character chara : actualWord.toCharArray()) {
+                    actualSet.add(chara);
+                    actualList.add(chara);
+                }
+            }
+
+
+            if (trueOut) {
+                System.out.println("time to stop messing around");
+                truefound = true;
+                actualWord = tempList.get(0);
+                System.out.println("This is the real word chosen by system: " + actualWord);
+                for (Character chara : actualWord.toCharArray()) {
+                    actualSet.add(chara);
+                    actualList.add(chara);
+                }
+                if (actualSet.contains(letter)) {
+                    for (int i = 0; i < actualList.size(); i++) {
+                        if (actualList.get(i) == letter && actualList.size()==guessList.size()) {
+                            guessList.set(i, letter);
+                        }
+                    }
+                    return true;
+                }
+                return false;
+
+            } else {
+                System.out.println("keep messing around");
+                tempListcopy = (ArrayList) tempList.clone();
+            }
+
+        } else {
+
+
+            if (actualSet.contains(letter)) {
+                for (int i = 0; i < actualList.size(); i++) {
+                    if (actualList.get(i) == letter && actualList.size()==guessList.size()) {
+                        guessList.set(i, letter);
+                    }
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    public ArrayList<String> divideConquer(ArrayList<String> array, char s){
+
+        HashMap<String, HashSet<String>> dcStore= new HashMap<>();
+
+
+
+        for(String str: array){
+            ArrayList<Character> tempGuessList = new ArrayList<>();
+            for(int i = 0; i<wordSize; ++i){
+                tempGuessList.add(BLANK);
+            }
+
+            if (str.indexOf(s) != -1) {
+                int c = 0;
+                for (char chara: str.toCharArray()) {
+                    if (chara == s) {
+                        tempGuessList.set(c, s);
+                    }
+                    c = c + 1;
+                }
+            }
+            HashSet<String> hs = dcStore.get(ArrayListToString(tempGuessList));
+            if (hs == null){
+                HashSet<String> hss = new HashSet<>();
+                hss.add(str);
+                dcStore.put(ArrayListToString(tempGuessList), hss);
+            } else {
+                hs.add(str);
+                dcStore.put(ArrayListToString(tempGuessList), hs);
+            }
+
+        }
+         
+        ArrayList<String> biggestList = new ArrayList<>();
+        System.out.println(dcStore);
+        int biggestListSize = 0;
+        for (HashSet value : dcStore.values()) {
+            ArrayList<String> bigList = new ArrayList<>(value);
+            if (bigList.size() > biggestListSize){
+                biggestListSize = bigList.size();
+                biggestList = bigList;
+            }
+        }
+        return biggestList;
+
+    }
+
+    public String ArrayListToString(ArrayList<Character> al){
+        StringBuilder tempsb = new StringBuilder();
+        for(char ch: al){
+            tempsb.append(ch);
+        }
+        return tempsb.toString();
+    }
+
+
+    public EvilHangman(String dictionaryFile) {
+        wordSize = 4;
+        dictionaryList = super.readAndStore(dictionaryFile, dictionaryList, wordSize);
+        System.out.print(dictionaryList);
+        tempList = new ArrayList<>(dictionaryList);
+
+        for(int i = 0; i<wordSize; ++i){
+            guessList.add(BLANK);
+        }
+
+    }
+
+
+}
